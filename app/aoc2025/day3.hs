@@ -1,12 +1,13 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+
 {-# HLINT ignore "Use guards" #-}
 module AOC2025.Day3 where
 
-import Data.List  
-import Data.Text qualified as T 
-import Utils qualified as U
 import Data.Char (digitToInt)
+import Data.List
 import Data.Maybe (fromMaybe)
+import Data.Text qualified as T
+import Utils qualified as U
 
 part1 :: [String] -> Int
 part1 a = sum $ map maxJoltage a

@@ -1,6 +1,5 @@
 module AOC2025.Day2 where
 
-import Data.List (nub)
 import Data.List.Split (chunksOf, splitOn)
 import Data.Set qualified as Set
 import Data.Text qualified as T
@@ -50,7 +49,7 @@ part2 a =
             allMatch :: [String] -> Bool
             allMatch x = check (drop 1 x) (head x) True
             check [] _ r = r
-            check (x:xs) val r
+            check (x : xs) val r
               | not r = False
               | otherwise = check xs x nr
               where
