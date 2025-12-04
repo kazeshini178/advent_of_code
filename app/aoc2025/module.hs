@@ -3,6 +3,7 @@ module AOC2025.Module (runChallenge) where
 import AOC2025.Day1 qualified as Day1
 import AOC2025.Day2 qualified as Day2
 import AOC2025.Day3 qualified as Day3
+import AOC2025.Day4 qualified as Day4
 import Data.Text qualified as T
 import Utils ( getChallengeData, Result)
 import Data.Time.Clock qualified as Clock
@@ -19,7 +20,7 @@ execute a = case a of
   1 -> Day1.run
   2 -> Day2.run
   3 -> Day3.run
-  4 -> error "Not Implemented"
+  4 -> Day4.run
   5 -> error "Not Implemented"
   6 -> error "Not Implemented"
   7 -> error "Not Implemented"

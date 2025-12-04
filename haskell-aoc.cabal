@@ -67,7 +67,7 @@ executable haskell-aoc
                       AOC2018.Module, AOC2018.Day1, AOC2018.Day2, AOC2018.Day3, AOC2018.Day4, AOC2018.Day5, AOC2018.Day7,
                       AOC2023.Module, AOC2023.Day1,
                       AOC2024.Module, AOC2024.Day1,
-                      AOC2025.Module, AOC2025.Day1, AOC2025.Day2, AOC2025.Day3,
+                      AOC2025.Module, AOC2025.Day1, AOC2025.Day2, AOC2025.Day3, AOC2025.Day4,
                       Utils
 
     -- LANGUAGE extensions used by modules in this package.
@@ -79,7 +79,7 @@ executable haskell-aoc
         req, text, directory, containers,
         parsec, cryptohash-md5, bytestring,
         hex-text, base16-bytestring, clock,
-        formatting, chronos, split, time
+        formatting, chronos, split, time, vector
 
     -- Directories containing source files.
     hs-source-dirs:   app
