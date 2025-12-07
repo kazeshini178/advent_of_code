@@ -5,6 +5,8 @@ import AOC2025.Day2 qualified as Day2
 import AOC2025.Day3 qualified as Day3
 import AOC2025.Day4 qualified as Day4
 import AOC2025.Day5 qualified as Day5
+import AOC2025.Day6 qualified as Day6
+import AOC2025.Day7 qualified as Day7
 import Data.Text qualified as T
 import Utils ( getChallengeData, Result)
 import Data.Time.Clock qualified as Clock
@@ -23,8 +25,8 @@ execute a = case a of
   3 -> Day3.run
   4 -> Day4.run
   5 -> Day5.run
-  6 -> error "Not Implemented"
-  7 -> error "Not Implemented"
+  6 -> Day6.run
+  7 -> Day7.run
   8 -> error "Not Implemented"
   9 -> error "Not Implemented"
   10 -> error "Not Implemented"
