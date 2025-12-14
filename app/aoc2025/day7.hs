@@ -29,22 +29,22 @@ part1 a = tachyons
         newCount = foldl' (+) 0 $ map fst splitters
 
 part2 :: [String] -> Int
-part2 a = countTimelines input [startIndex] (Map.fromList [(startIndex, 1)])
+part2 a = countTimelines input (Map.fromList [(startIndex, 1)])
   where
     input = V.fromList . U.runParser parseInstruction <$> a
     startIndex = fromMaybe 0 $ V.elemIndex Start $ head input
-    countTimelines [] _ cache = sum $ Map.elems cache
-    countTimelines (x : xs) idx cache = if allFree then countTimelines xs idx cache else countTimelines xs newPaths ncache
+
+    countTimelines [] cache = sum cache
+    countTimelines (x : xs)  cache = if allFree then countTimelines xs cache else countTimelines xs ncache
       where
         allFree = all (== Free) x
-        ncache = foldl' updateCache cache idx
-        newPaths = Map.keys $ Map.filter (/= 0) ncache
-        updateCache p c =
-          if x V.! c == Splitter
+        ncache = foldl' updateCache cache $ Map.keys $ Map.filter (/= 0) cache
+        updateCache cache' key =
+          if x V.! key == Splitter
             then
-              let val = fromMaybe 1 $ Map.lookup c p
-               in Map.insertWith (+) (c + 1) val $ Map.insertWith (+) (c - 1) val $ Map.insert c 0 p
-            else p
+              let val = fromMaybe 1 $ Map.lookup key cache' 
+              in Map.insertWith (+) (key + 1) val $ Map.insertWith (+) (key - 1) val $ Map.insert key 0 cache'
+            else cache'
 
 run :: T.Text -> U.Result
 run a = U.Result result1 result2

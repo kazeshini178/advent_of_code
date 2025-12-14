@@ -43,7 +43,8 @@ part1 i = foldl' (*) 1 $ take 3 $ List.sortBy (compare `on` Down) $ map length $
         newCircuits = List.nub (circuit ++ matching) : remaining
 
 part2 :: [String] -> Int
-part2 i = complete $ snd $ foldl' (\p (c1, c2) -> makeConnections p c1 c2) ([], (Coord3d 0 0 0, Coord3d 0 0 0)) $ map fst distanctPairs
+part2 i = complete $ makeConnections' ( map fst distanctPairs) [] (length input) (Coord3d 0 0 0, Coord3d 0 0 0)
+-- complete $ snd $ foldl' (\p (c1, c2) -> makeConnections p c1 c2) ([], (Coord3d 0 0 0, Coord3d 0 0 0)) $ map fst distanctPairs
   where
     complete (Coord3d x1 _ _, Coord3d x2 _ _) = x1 * x2
     input = U.runParser parseInstruction $ unlines i
@@ -61,6 +62,17 @@ part2 i = complete $ snd $ foldl' (\p (c1, c2) -> makeConnections p c1 c2) ([], 
         x = (x1 - x2) * (x1 - x2)
         y = (y1 - y2) * (y1 - y2)
         z = (z1 - z2) * (z1 - z2)
+    makeConnections' :: [(Coord, Coord)] -> [[Coord]] -> Int -> (Coord, Coord)-> (Coord, Coord)  
+    makeConnections' [] _ _ pc = pc  
+    makeConnections' ((c1, c2):xs) cons oLength pc = if length nfirst == oLength then prevConnection else  makeConnections' xs newCircuits oLength prevConnection
+      where
+        circuit = [c1, c2]
+        (matching, remaining) = List.partition (\c -> c1 `elem` c || c2 `elem` c) cons
+        newCircuits = List.nub (circuit ++ concat matching) : remaining
+        -- (first, _) = fromMaybe ([], [[]]) $ List.uncons cons
+        (nfirst, _) = fromMaybe ([], [[]]) $ List.uncons newCircuits
+        prevConnection = (c1, c2)
+
     makeConnections (cons, pc) c1 c2 = if c1 `elem` first && c2 `elem` first then (cons, pc) else (newCircuits, prevConnection)
       where
         circuit = [c1, c2]

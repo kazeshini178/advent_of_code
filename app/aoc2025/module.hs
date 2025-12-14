@@ -8,6 +8,10 @@ import AOC2025.Day5 qualified as Day5
 import AOC2025.Day6 qualified as Day6
 import AOC2025.Day7 qualified as Day7
 import AOC2025.Day8 qualified as Day8
+import AOC2025.Day9 qualified as Day9
+import AOC2025.Day10 qualified as Day10
+import AOC2025.Day11 qualified as Day11
+import AOC2025.Day12 qualified as Day12
 import Data.Text qualified as T
 import Utils ( getChallengeData, Result)
 import Data.Time.Clock qualified as Clock
@@ -29,10 +33,10 @@ execute a = case a of
   6 -> Day6.run
   7 -> Day7.run
   8 -> Day8.run
-  9 -> error "Not Implemented"
-  10 -> error "Not Implemented"
-  11 -> error "Not Implemented"
-  12 -> error "Not Implemented"
+  9 -> Day9.run
+  10 -> Day10.run
+  11 -> Day11.run
+  12 -> Day12.run
   _ -> error "Invalid Day, AOC only runns from the 1st to the 12th since 2025"
 
 runChallenge :: Int -> IO Result
